@@ -82,17 +82,24 @@ def property_detail(request, pk):
     prop.delete()
     return Response({'message': 'Property deleted'})
 
-@api_view(['GET','POST'])
+@api_view(['GET', 'POST'])
 def contact_message(request):
+
     if request.method == 'GET':
-        return Response({"message": "Contact API is working. Use POST to send message."})
-    
-    
-    serializer = ContactSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response({"message": "Message sent successfully"}, status=201)
-    return Response(serializer.errors, status=400)
+        messages = ContactMessage.objects.all().order_by('-id')
+        serializer = ContactSerializer(messages, many=True)
+        return Response(serializer.data)
+
+
+    if request.method == 'POST':
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": "Contact message sent successfully"},
+                status=status.HTTP_201_CREATED
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])

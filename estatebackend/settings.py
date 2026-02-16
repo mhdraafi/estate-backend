@@ -5,6 +5,8 @@ Django settings for estatebackend project.
 from pathlib import Path
 import os
 
+
+
 # --------------------------------------------------
 # BASE
 # --------------------------------------------------

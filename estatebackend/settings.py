@@ -6,10 +6,6 @@ from pathlib import Path
 import os
 
 
-
-# --------------------------------------------------
-# BASE
-# --------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get(
@@ -17,10 +13,6 @@ SECRET_KEY = os.environ.get(
     "django-insecure-change-this-in-production"
 )
 
-# --------------------------------------------------
-# DEBUG
-# --------------------------------------------------
-# ⚠️ TEMPORARY TRUE (REQUIRED for media on Railway)
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -33,9 +25,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://estate-backend-production.up.railway.app",
 ]
 
-# --------------------------------------------------
-# APPS
-# --------------------------------------------------
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -43,18 +32,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    # Third-party
     "rest_framework",
     "corsheaders",
-
-    # Local
     "estateapp",
 ]
 
-# --------------------------------------------------
-# MIDDLEWARE
-# --------------------------------------------------
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -69,20 +52,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# --------------------------------------------------
-# CORS
-# --------------------------------------------------
+
 CORS_ALLOW_ALL_ORIGINS = True
 
-# --------------------------------------------------
-# URL / WSGI
-# --------------------------------------------------
+
 ROOT_URLCONF = "estatebackend.urls"
 WSGI_APPLICATION = "estatebackend.wsgi.application"
 
-# --------------------------------------------------
-# TEMPLATES
-# --------------------------------------------------
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -99,9 +75,6 @@ TEMPLATES = [
     },
 ]
 
-# --------------------------------------------------
-# DATABASE
-# --------------------------------------------------
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -109,9 +82,6 @@ DATABASES = {
     }
 }
 
-# --------------------------------------------------
-# PASSWORD VALIDATION
-# --------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -119,17 +89,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# --------------------------------------------------
-# INTERNATIONALIZATION
-# --------------------------------------------------
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# --------------------------------------------------
-# STATIC FILES
-# --------------------------------------------------
+
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
@@ -137,13 +102,10 @@ STATICFILES_STORAGE = (
     "whitenoise.storage.CompressedManifestStaticFilesStorage"
 )
 
-# --------------------------------------------------
-# MEDIA FILES (🔥 IMAGE FIX)
-# --------------------------------------------------
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-# --------------------------------------------------
-# DEFAULT PK
-# --------------------------------------------------
+
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
